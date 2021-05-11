@@ -75,12 +75,12 @@ namespace EndlessMode
         {
             IPreviewBeatmapLevel previewBeatmapLevel = _previewBeatmapLevels![_random.Next(0, _previewBeatmapLevels.Length)];
             BeatmapLevelsModel.GetBeatmapLevelResult getBeatmapLevelResult = await _beatmapLevelsModel.GetBeatmapLevelAsync(previewBeatmapLevel.levelID, CancellationToken.None);
+            if (getBeatmapLevelResult.isError) return await NextDifficultyBeatmap();
             IDifficultyBeatmapSet? difficultyBeatmapSet = getBeatmapLevelResult.beatmapLevel.beatmapLevelData.difficultyBeatmapSets.FirstOrDefault(x => x.beatmapCharacteristic.serializedName == _gameplayCoreSceneSetupData.difficultyBeatmap.parentDifficultyBeatmapSet.beatmapCharacteristic.serializedName)
                                                           ?? getBeatmapLevelResult.beatmapLevel.beatmapLevelData.difficultyBeatmapSets.First();
             IDifficultyBeatmap difficultyBeatmap = difficultyBeatmapSet.difficultyBeatmaps.FirstOrDefault(x => x.difficultyRank <= _gameplayCoreSceneSetupData.difficultyBeatmap.difficultyRank)
                                                    ?? difficultyBeatmapSet.difficultyBeatmaps.Last(x => x.difficultyRank > _gameplayCoreSceneSetupData.difficultyBeatmap.difficultyRank);
-            string[]? requirements = SongCore.Collections.RetrieveExtraSongData(previewBeatmapLevel.levelID)?._difficulties?
-                .First(x => x._difficulty == difficultyBeatmap.difficulty).additionalDifficultyData._requirements;
+            string[]? requirements = SongCore.Collections.RetrieveExtraSongData(previewBeatmapLevel.levelID)?._difficulties?.First(x => x._difficulty == difficultyBeatmap.difficulty).additionalDifficultyData._requirements;
             return requirements?.All(x => SongCore.Collections.capabilities.Contains(x)) ?? true ? difficultyBeatmap : await NextDifficultyBeatmap();
         }
     }
