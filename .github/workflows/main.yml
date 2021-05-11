@@ -37,3 +37,8 @@ jobs:
       env:
         BUILDTEXT: Filename=${{ steps.Build.outputs.filename }}
         ASSEMBLYNAME: AssemblyName=${{ steps.Build.outputs.assemblyname }}
+    - name: Upload Plugin Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.Build.outputs.filename }}
+        path: ${{ steps.Build.outputs.artifactpath }}
