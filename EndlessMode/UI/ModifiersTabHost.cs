@@ -17,8 +17,8 @@ namespace EndlessMode.UI
         [UIValue("enabled")]
         public bool Enabled
         {
-            get => _config!.Enabled;
-            set => _config!.Enabled = value;
+            get => _config.Enabled;
+            set => _config.Enabled = value;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using EndlessMode.Configuration;
-using EndlessMode.HarmonyPatches;
 
 using IPA.Logging;
 
@@ -19,7 +18,6 @@ namespace EndlessMode.Installers
         {
             _logger = logger;
             _config = config;
-            SongControllerPatch.PluginConfig = config;
         }
 
         public override void InstallBindings()

@@ -30,9 +30,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
-    <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
-    <None Include="EndlessMode.csproj.user" Condition="Exists('EndlessMode.csproj.user')" />
+    <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" Visible="false" />
+    <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" Visible="false" />
+    <None Include="EndlessMode.csproj.user" Condition="Exists('EndlessMode.csproj.user')" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="manifest.json" />
+    <EmbeddedResource Include="Views\Modifiers.bsml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,9 +59,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="BGNet">
-      <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\BGNet.dll</HintPath>
     </Reference>
     <Reference Include="HMLib">
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\HMLib.dll</HintPath>
@@ -85,9 +87,6 @@
     <Reference Include="IPA.Loader">
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\IPA.Loader.dll</HintPath>
     </Reference>
-    <Reference Include="HarmonyLib">
-      <HintPath>$(BeatSaberDir)\Libs\0Harmony.dll</HintPath>
-    </Reference>
     <Reference Include="BSML">
       <HintPath>$(BeatSaberDir)\Plugins\BSML.dll</HintPath>
     </Reference>
@@ -99,15 +98,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="EndlessMode.csproj.user" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="manifest.json" />
-    <EmbeddedResource Include="manifest.json" />
-    <None Remove="Views\Modifiers.bsml" />
-    <EmbeddedResource Include="Views\Modifiers.bsml" />
-  </ItemGroup>
-  
 </Project>

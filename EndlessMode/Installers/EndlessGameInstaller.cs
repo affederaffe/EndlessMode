@@ -1,4 +1,4 @@
-﻿using EndlessMode.Configuration;
+﻿using System;
 
 using Zenject;
 
@@ -7,17 +7,18 @@ namespace EndlessMode.Installers
 {
     public class EndlessGameInstaller : Installer
     {
-        private readonly PluginConfig _config;
+        private readonly GameSongController _gameSongController;
 
-        public EndlessGameInstaller(PluginConfig config)
+        public EndlessGameInstaller(GameSongController gameSongController)
         {
-            _config = config;
+            _gameSongController = gameSongController;
         }
 
         public override void InstallBindings()
         {
-            if (_config.Enabled)
-                Container.BindInterfacesTo<EndlessSongController>().AsSingle();
+            Container.Unbind<GameSongController>();
+            Container.Bind(typeof(GameSongController), typeof(IInitializable), typeof(IDisposable)).To<EndlessSongController>().FromNewComponentOn(_gameSongController.gameObject).AsSingle();
+            _gameSongController.enabled = false;
         }
     }
 }

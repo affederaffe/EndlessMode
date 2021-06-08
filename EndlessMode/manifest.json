@@ -3,13 +3,13 @@
   "id": "EndlessMode",
   "name": "EndlessMode",
   "author": "affederaffe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The pain never ends",
-  "gameVersion": "1.15.0",
+  "gameVersion": "1.16.2",
   "dependsOn": {
     "BSIPA": "^4.1.6",
-    "BeatSaberMarkupLanguage": "^1.5.2",
-    "SiraUtil": "^2.5.3",
-    "SongCore": "^3.3.4"
+    "BeatSaberMarkupLanguage": "^1.5.3",
+    "SiraUtil": "^2.5.5",
+    "SongCore": "^3.4.1"
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 
+using BeatSaberMarkupLanguage;
 using BeatSaberMarkupLanguage.GameplaySetup;
 
 using Zenject;
@@ -7,7 +8,7 @@ using Zenject;
 
 namespace EndlessMode.UI
 {
-    public class ModifiersTabManager : IInitializable, IDisposable
+    public sealed class ModifiersTabManager : IInitializable, IDisposable
     {
         private readonly ModifiersTabHost _modifiersTabHost;
 
@@ -23,10 +24,8 @@ namespace EndlessMode.UI
 
         public void Dispose()
         {
-            if (GameplaySetup.IsSingletonAvailable)
-            {
+            if (GameplaySetup.IsSingletonAvailable && BSMLParser.IsSingletonAvailable)
                 GameplaySetup.instance.RemoveTab("Endless Mode");
-            }
         }
     }
 }
